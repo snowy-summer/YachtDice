@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var ScoreTableView: UITableView!
     
     private var dices = [1,1,1,1,1]
+    private let scoreList = ScoreList().list
     private var calculator = Calculator()
 
     @IBOutlet weak var DicesImage: UIStackView!
@@ -19,6 +20,7 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
     }
 
     @IBAction func rollTheDice(_ sender: UIButton) {
@@ -50,50 +52,49 @@ final class ViewController: UIViewController {
     
 }
 
-// MARK: - configuration
-
-
-enum Dice: Int {
-    case one = 1
-    case two
-    case three
-    case four
-    case five
-    case six
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
-    var image: UIImage {
-        switch self {
-        case .one:
-            return DiceImage.diceOne
-        case .two:
-            return DiceImage.diceTwo
-        case .three:
-            return DiceImage.diceThree
-        case .four:
-            return DiceImage.diceFour
-        case .five:
-            return DiceImage.diceFive
-        case .six:
-            return DiceImage.diceSix
-        }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return scoreList.count
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.identifier) as? ScoreTableViewCell else { return ScoreTableViewCell() }
+        
+        
+        cell.updateContent(data: scoreList[indexPath.row])
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row <= 5 {
+            print(calculator.countOfDice(num: indexPath.row + 1))
+        }
+        
+    }
+    
+    
+    
 }
 
-struct DiceImage {
-    static let images = [
-        diceOne,
-        diceTwo,
-        diceThree,
-        diceFour,
-        diceFive,
-        diceSix
-    ]
+
+// MARK: - configuration
+extension ViewController {
     
-    static let diceOne = UIImage(resource: .diceOne)
-    static let diceTwo = UIImage(resource: .diceTwo)
-    static let diceThree = UIImage(resource: .diceThree)
-    static let diceFour = UIImage(resource: .diceFour)
-    static let diceFive = UIImage(resource: .diceFive)
-    static let diceSix = UIImage(resource: .diceSix)
+    private func configureTableView() {
+        
+        ScoreTableView.delegate = self
+        ScoreTableView.dataSource = self
+        
+        ScoreTableView.rowHeight = view.frame.height * 0.1
+        
+        let scoreCellXib = UINib(nibName: "ScoreTableViewCell",
+                                 bundle: nil)
+        ScoreTableView.register(scoreCellXib,
+                                forCellReuseIdentifier: ScoreTableViewCell.identifier)
+    }
 }

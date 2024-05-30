@@ -10,15 +10,67 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreTableViewCell" rowHeight="134" id="KGk-i7-Jjw" customClass="ScoreTableViewCell" customModule="YachtDice" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScoreTableViewCell" rowHeight="84" id="KGk-i7-Jjw" customClass="ScoreTableViewCell" customModule="YachtDice" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="134"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="diceOne" translatesAutoresizingMaskIntoConstraints="NO" id="pVe-dN-z65">
+                        <rect key="frame" x="8" y="8" width="68" height="68"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="pVe-dN-z65" secondAttribute="height" multiplier="1:1" id="5f8-yx-9pj"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JdZ-lt-y1k">
+                        <rect key="frame" x="176" y="11" width="128" height="62"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inU-yT-xwa">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="62"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zp2-z0-YHa">
+                                <rect key="frame" x="68" y="0.0" width="60" height="62"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXY-qK-e78">
+                        <rect key="frame" x="92" y="16" width="44.5" height="52"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="gXY-qK-e78" secondAttribute="bottom" constant="16" id="Cw9-fV-lKK"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="JdZ-lt-y1k" secondAttribute="bottom" id="Lw1-Fe-ZIc"/>
+                    <constraint firstItem="gXY-qK-e78" firstAttribute="leading" secondItem="pVe-dN-z65" secondAttribute="trailing" constant="16" id="MmL-E5-uOU"/>
+                    <constraint firstItem="gXY-qK-e78" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="OdT-c0-jtT"/>
+                    <constraint firstItem="pVe-dN-z65" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="XZe-0Q-gqH"/>
+                    <constraint firstItem="JdZ-lt-y1k" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="Yu4-7b-G4p"/>
+                    <constraint firstItem="pVe-dN-z65" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dO7-69-p4E"/>
+                    <constraint firstAttribute="bottom" secondItem="pVe-dN-z65" secondAttribute="bottom" constant="8" id="hUj-PC-22q"/>
+                    <constraint firstItem="JdZ-lt-y1k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="pAx-lL-ON0"/>
+                    <constraint firstAttribute="trailing" secondItem="JdZ-lt-y1k" secondAttribute="trailing" constant="16" id="zL8-H3-0fA"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <point key="canvasLocation" x="131.70731707317074" y="31.525423728813561"/>
+            <connections>
+                <outlet property="opponentScoreLabel" destination="Zp2-z0-YHa" id="0Bk-sc-er0"/>
+                <outlet property="scoreImageView" destination="pVe-dN-z65" id="toh-dI-Vdr"/>
+                <outlet property="titleLabel" destination="gXY-qK-e78" id="knc-Ww-11w"/>
+                <outlet property="userScoreLabel" destination="inU-yT-xwa" id="IY7-U1-FG1"/>
+            </connections>
+            <point key="canvasLocation" x="131.70731707317074" y="18.8135593220339"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="diceOne" width="100" height="100"/>
+    </resources>
 </document>

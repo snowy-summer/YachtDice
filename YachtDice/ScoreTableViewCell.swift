@@ -11,8 +11,28 @@ final class ScoreTableViewCell: UITableViewCell {
     
     static let identifier = "ScoreTableViewCell"
 
+    @IBOutlet weak var scoreImageView: UIImageView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBOutlet weak var userScoreLabel: UILabel!
+    @IBOutlet weak var opponentScoreLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        selectionStyle = .none
     }
     
+    func updateContent(data: Score) {
+        scoreImageView.image = data.image
+        titleLabel.text = data.title
+        userScoreLabel.text = "\(data.userScore)"
+        opponentScoreLabel.text = "\(data.opponentScore)"
+        
+        if data.title == "Subtotal" {
+            userScoreLabel.text = data.subtotalUserScore
+            opponentScoreLabel.text = data.subtotalopponentScore
+        }
+    }
 }
