@@ -16,6 +16,9 @@
 		6B20B42E2C07FF7D00CDAC69 /* YachtDiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20B42D2C07FF7D00CDAC69 /* YachtDiceTests.swift */; };
 		6B20B4382C07FF7D00CDAC69 /* YachtDiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20B4372C07FF7D00CDAC69 /* YachtDiceUITests.swift */; };
 		6B20B43A2C07FF7D00CDAC69 /* YachtDiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20B4392C07FF7D00CDAC69 /* YachtDiceUITestsLaunchTests.swift */; };
+		6B20B4502C084AD800CDAC69 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B20B44F2C084AD800CDAC69 /* Calculator.swift */; };
+		6B98B3BF2C08A26A00F9E455 /* ScoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B98B3BE2C08A26A00F9E455 /* ScoreTableViewCell.xib */; };
+		6B98B3C02C08A26A00F9E455 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3BD2C08A26A00F9E455 /* ScoreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		6B20B4332C07FF7D00CDAC69 /* YachtDiceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YachtDiceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B20B4372C07FF7D00CDAC69 /* YachtDiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YachtDiceUITests.swift; sourceTree = "<group>"; };
 		6B20B4392C07FF7D00CDAC69 /* YachtDiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YachtDiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6B20B44F2C084AD800CDAC69 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		6B98B3BD2C08A26A00F9E455 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		6B98B3BE2C08A26A00F9E455 /* ScoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,10 @@
 				6B20B4162C07FF7C00CDAC69 /* AppDelegate.swift */,
 				6B20B4182C07FF7C00CDAC69 /* SceneDelegate.swift */,
 				6B20B41A2C07FF7C00CDAC69 /* ViewController.swift */,
+				6B20B44F2C084AD800CDAC69 /* Calculator.swift */,
 				6B20B41C2C07FF7C00CDAC69 /* Main.storyboard */,
+				6B98B3BD2C08A26A00F9E455 /* ScoreTableViewCell.swift */,
+				6B98B3BE2C08A26A00F9E455 /* ScoreTableViewCell.xib */,
 				6B20B41F2C07FF7D00CDAC69 /* Assets.xcassets */,
 				6B20B4212C07FF7D00CDAC69 /* LaunchScreen.storyboard */,
 				6B20B4242C07FF7D00CDAC69 /* Info.plist */,
@@ -233,6 +242,7 @@
 			files = (
 				6B20B4202C07FF7D00CDAC69 /* Assets.xcassets in Resources */,
 				6B20B4232C07FF7D00CDAC69 /* Base in Resources */,
+				6B98B3BF2C08A26A00F9E455 /* ScoreTableViewCell.xib in Resources */,
 				6B20B41E2C07FF7C00CDAC69 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B98B3C02C08A26A00F9E455 /* ScoreTableViewCell.swift in Sources */,
 				6B20B41B2C07FF7C00CDAC69 /* ViewController.swift in Sources */,
+				6B20B4502C084AD800CDAC69 /* Calculator.swift in Sources */,
 				6B20B4172C07FF7C00CDAC69 /* AppDelegate.swift in Sources */,
 				6B20B4192C07FF7C00CDAC69 /* SceneDelegate.swift in Sources */,
 			);
@@ -465,7 +477,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -499,7 +511,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
