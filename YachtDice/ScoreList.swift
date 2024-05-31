@@ -53,15 +53,28 @@ struct ScoreList {
               image: UIImage(resource: .yacht))
     ]
     
-    var subtotalUesrScore: Int {
+    var uesrSubtotalScore: Int {
         let subtotal = list[0...5].reduce(0) { $0 + $1.userScore }
         return subtotal
     }
     
-    var totalUserScore: Int {
-        var total = subtotalUesrScore + list[7...12].reduce(0) { $0 + $1.userScore }
+    var userTotalScore: Int {
+        var total = uesrSubtotalScore + list[7...12].reduce(0) { $0 + $1.userScore }
         
-        if subtotalUesrScore >= 63 { total += 35 }
+        if uesrSubtotalScore >= 63 { total += 35 }
+        
+        return total
+    }
+    
+    var opponentSubtotalScore: Int {
+        let subtotal = list[0...5].reduce(0) { $0 + $1.opponentScore }
+        return subtotal
+    }
+    
+    var opponentTotalScore: Int {
+        var total = opponentSubtotalScore + list[7...12].reduce(0) { $0 + $1.opponentScore }
+        
+        if opponentSubtotalScore >= 63 { total += 35 }
         
         return total
     }

@@ -22,6 +22,8 @@
 		6B98B3C22C08B64E00F9E455 /* DiceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3C12C08B64E00F9E455 /* DiceImage.swift */; };
 		6B98B3C52C08B67D00F9E455 /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3C42C08B67D00F9E455 /* Dice.swift */; };
 		6B98B3C72C08B6A700F9E455 /* ScoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3C62C08B6A700F9E455 /* ScoreList.swift */; };
+		6B98B3D12C0966ED00F9E455 /* Identifier+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3D02C0966ED00F9E455 /* Identifier+Extension.swift */; };
+		6B98B3D32C09793400F9E455 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B98B3D22C09793400F9E455 /* Rule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		6B98B3C12C08B64E00F9E455 /* DiceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceImage.swift; sourceTree = "<group>"; };
 		6B98B3C42C08B67D00F9E455 /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		6B98B3C62C08B6A700F9E455 /* ScoreList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreList.swift; sourceTree = "<group>"; };
+		6B98B3D02C0966ED00F9E455 /* Identifier+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Identifier+Extension.swift"; sourceTree = "<group>"; };
+		6B98B3D22C09793400F9E455 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 		6B20B40A2C07FF7C00CDAC69 = {
 			isa = PBXGroup;
 			children = (
+				6B98B3D22C09793400F9E455 /* Rule.swift */,
+				6B98B3D02C0966ED00F9E455 /* Identifier+Extension.swift */,
 				6B20B4152C07FF7C00CDAC69 /* YachtDice */,
 				6B20B42C2C07FF7D00CDAC69 /* YachtDiceTests */,
 				6B20B4362C07FF7D00CDAC69 /* YachtDiceUITests */,
@@ -290,8 +296,10 @@
 				6B98B3C72C08B6A700F9E455 /* ScoreList.swift in Sources */,
 				6B98B3C02C08A26A00F9E455 /* ScoreTableViewCell.swift in Sources */,
 				6B20B41B2C07FF7C00CDAC69 /* ViewController.swift in Sources */,
+				6B98B3D32C09793400F9E455 /* Rule.swift in Sources */,
 				6B20B4502C084AD800CDAC69 /* Calculator.swift in Sources */,
 				6B20B4172C07FF7C00CDAC69 /* AppDelegate.swift in Sources */,
+				6B98B3D12C0966ED00F9E455 /* Identifier+Extension.swift in Sources */,
 				6B20B4192C07FF7C00CDAC69 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

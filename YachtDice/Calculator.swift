@@ -11,12 +11,7 @@ struct Calculator {
     var dices = [Int](repeating: 1, count: 5)
     
     var sumOfDices: Int {
-        var sum = 0
-        dices.forEach { num in
-            sum += num
-        }
-        
-        return sum
+        return dices.reduce(0, +)
     }
     
     var choice: Int {
@@ -43,10 +38,11 @@ struct Calculator {
     
     var fullHouse: Int {
         var sortedDice = dices.sorted()
-        
-        if sortedDice[0] == sortedDice[1] &&
-            sortedDice[2] == sortedDice[3] &&
-            sortedDice[3] == sortedDice[4] {
+    
+        if (sortedDice[0] == sortedDice[1] &&
+            sortedDice[2] == sortedDice[4]) ||
+            (sortedDice[0] == sortedDice[2] &&
+             sortedDice[3] == sortedDice[4]) {
           
             return sumOfDices
         }

@@ -8,8 +8,6 @@
 import UIKit
 
 final class ScoreTableViewCell: UITableViewCell {
-    
-    static let identifier = "ScoreTableViewCell"
 
     @IBOutlet weak var scoreImageView: UIImageView!
     
@@ -21,7 +19,6 @@ final class ScoreTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectionStyle = .none
     }
     
     func updateContent(data: Score) {
@@ -34,5 +31,7 @@ final class ScoreTableViewCell: UITableViewCell {
             userScoreLabel.text = data.subtotalUserScore
             opponentScoreLabel.text = data.subtotalopponentScore
         }
+        
+        backgroundColor = .white
     }
 }
