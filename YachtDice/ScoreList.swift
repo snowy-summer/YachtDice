@@ -24,7 +24,7 @@ struct Score {
 }
 
 struct ScoreList {
-    let list = [
+    var list = [
         Score(title: "Aces",
               image: UIImage(resource: .aces)),
         Score(title: "Deuces",
@@ -50,8 +50,21 @@ struct ScoreList {
         Score(title: "Large Straight",
               image: UIImage(resource: .largeStraight)),
         Score(title: "Yacht",
-              image: UIImage(resource: .yacht)),
-        
+              image: UIImage(resource: .yacht))
     ]
+    
+    var subtotalUesrScore: Int {
+        let subtotal = list[0...5].reduce(0) { $0 + $1.userScore }
+        return subtotal
+    }
+    
+    var totalUserScore: Int {
+        var total = subtotalUesrScore + list[7...12].reduce(0) { $0 + $1.userScore }
+        
+        if subtotalUesrScore >= 63 { total += 35 }
+        
+        return total
+    }
+   
 }
 

@@ -46,8 +46,7 @@ struct Calculator {
         
         if sortedDice[0] == sortedDice[1] &&
             sortedDice[2] == sortedDice[3] &&
-            sortedDice[3] == sortedDice[4] &&
-            sortedDice[4] == sortedDice[5] {
+            sortedDice[3] == sortedDice[4] {
           
             return sumOfDices
         }

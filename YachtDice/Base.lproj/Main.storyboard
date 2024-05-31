@@ -174,6 +174,8 @@
                     <connections>
                         <outlet property="DicesImage" destination="Hhk-d9-4ng" id="vjt-Jo-hsm"/>
                         <outlet property="ScoreTableView" destination="JbB-Bw-Y3L" id="Qmb-iW-VCh"/>
+                        <outlet property="opponentTotalScoreLabel" destination="oTD-zk-ouH" id="gZy-Jc-RvB"/>
+                        <outlet property="userTotalScoreLabel" destination="8Op-Fz-piq" id="Ald-6k-3xX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

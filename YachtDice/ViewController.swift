@@ -10,12 +10,15 @@ import UIKit
 final class ViewController: UIViewController {
     
     @IBOutlet weak var ScoreTableView: UITableView!
+    @IBOutlet weak var DicesImage: UIStackView!
+    
+    @IBOutlet weak var userTotalScoreLabel: UILabel!
+    @IBOutlet weak var opponentTotalScoreLabel: UILabel!
     
     private var dices = [1,1,1,1,1]
-    private let scoreList = ScoreList().list
+    private var scoreList = ScoreList()
     private var calculator = Calculator()
 
-    @IBOutlet weak var DicesImage: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,7 @@ final class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scoreList.count
+        return scoreList.list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,7 +66,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.identifier) as? ScoreTableViewCell else { return ScoreTableViewCell() }
         
         
-        cell.updateContent(data: scoreList[indexPath.row])
+        cell.updateContent(data: scoreList.list[indexPath.row])
         
         return cell
     }
@@ -71,13 +74,31 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row <= 5 {
-            print(calculator.countOfDice(num: indexPath.row + 1))
+        switch indexPath.row {
+        case 0...5:
+            scoreList.list[indexPath.row].userScore = calculator.countOfDice(num: indexPath.row + 1)
+            scoreList.list[6].userScore = scoreList.subtotalUesrScore
+        case 7:
+            scoreList.list[indexPath.row].userScore = calculator.choice
+        case 8:
+            scoreList.list[indexPath.row].userScore = calculator.fourOfKind
+        case 9:
+            scoreList.list[indexPath.row].userScore = calculator.fullHouse
+        case 10:
+            scoreList.list[indexPath.row].userScore = calculator.smallStraight
+        case 11:
+            scoreList.list[indexPath.row].userScore = calculator.largeStraight
+        case 12:
+            scoreList.list[indexPath.row].userScore = calculator.yacht
+        default:
+            break
         }
         
+        userTotalScoreLabel.text = "\(scoreList.totalUserScore)"
+        
+        tableView.reloadData()
+        
     }
-    
-    
     
 }
 
