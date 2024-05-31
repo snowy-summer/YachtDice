@@ -292,6 +292,7 @@
                         <outlet property="opportunityLabel" destination="oc1-cp-rcG" id="Wd7-Me-c3R"/>
                         <outlet property="opportunityView" destination="AMV-oB-DJV" id="Gpw-Y1-16o"/>
                         <outlet property="scoreTableView" destination="JbB-Bw-Y3L" id="Qmb-iW-VCh"/>
+                        <outlet property="turnCountLabel" destination="tjO-zn-q3d" id="rKw-1c-QSv"/>
                         <outlet property="userTotalScoreLabel" destination="8Op-Fz-piq" id="Ald-6k-3xX"/>
                     </connections>
                 </viewController>

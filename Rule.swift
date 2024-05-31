@@ -10,5 +10,5 @@ import Foundation
 struct Rule {
     var opportunity: Int = 3
     var isUserTurn: Bool = true
-    var totalTurn: Int = 1
+    var totalTurn: Int = 0
 }

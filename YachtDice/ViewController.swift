@@ -16,6 +16,7 @@ final class ViewController: UIViewController {
     @IBOutlet weak var opponentTotalScoreLabel: UILabel!
     @IBOutlet weak var opportunityView: UIView!
     @IBOutlet weak var opportunityLabel: UILabel!
+    @IBOutlet weak var turnCountLabel: UILabel!
     
     private var dices = [1,1,1,1,1] {
         didSet {
@@ -27,6 +28,8 @@ final class ViewController: UIViewController {
     
     private var scoreList = ScoreList() {
         didSet {
+            userTotalScoreLabel.text = "\(scoreList.userTotalScore)"
+            opponentTotalScoreLabel.text = "\(scoreList.opponentTotalScore)"
             scoreTableView.reloadData()
         }
     }
@@ -34,6 +37,7 @@ final class ViewController: UIViewController {
     private var rule = Rule() {
         didSet {
             opportunityLabel.text = "\(rule.opportunity)"
+            turnCountLabel.text = "\(rule.totalTurn) / 12"
         }
     }
     
@@ -42,9 +46,16 @@ final class ViewController: UIViewController {
         
         configureTableView()
         configureOpportunityView()
+        configureDefualtLabelContent()
+        rolling()
     }
     
     @IBAction func lockDice(_ sender: UITapGestureRecognizer) {
+        if checkFirstRoll() == false {
+            showRequestRollAlert()
+            return
+        }
+        
         if let imageView = sender.view as? UIImageView,
            let  lockedImageView = lockedDiceImageStackView.arrangedSubviews[imageView.tag] as? UIImageView {
             
@@ -75,14 +86,15 @@ final class ViewController: UIViewController {
         
     }
     
-    
     @IBAction func rollTheDice(_ sender: UIButton) {
         
-        if rule.opportunity == 0 {
-            return
-        }
-        
+        if rule.opportunity == 0 { return }
         rule.opportunity -= 1
+        rolling()
+        
+    }
+    
+    private func rolling() {
         
         for i in 0..<5 {
             if let randomDice = (1...6).randomElement(),
@@ -98,8 +110,6 @@ final class ViewController: UIViewController {
                 
             }
         }
-        
-        
     }
     
     private func animatingImage(imageView: UIImageView) {
@@ -135,7 +145,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         
-        resetDiceImage()
+        if checkFirstRoll() == false {
+            showRequestRollAlert()
+            return
+        }
+        
+        resetDice()
         
         switch indexPath.row {
         case 0...5:
@@ -157,14 +172,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
         
-        userTotalScoreLabel.text = "\(scoreList.userTotalScore)"
-        opponentTotalScoreLabel.text = "\(scoreList.opponentTotalScore)"
-        
-        rule.opportunity = 3
-        
+        nextTurn()
     }
     
-    func resetDiceImage() {
+}
+
+//MARK: - Rule
+
+extension ViewController {
+    
+    private func resetDice() {
         for index in 0..<5 {
             
             if let lockedImageView = lockedDiceImageStackView.arrangedSubviews[index] as? UIImageView  {
@@ -183,14 +200,37 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
         }
+    }
+    
+    private func nextTurn() {
+        rule.opportunity = 3
+        rule.isUserTurn.toggle()
+        rule.totalTurn += 1
+    }
+    
+    private func checkFirstRoll() -> Bool {
         
+        return rule.opportunity == 3 ? false : true
     }
 }
 
-//MARK: - Rule
-
 extension ViewController {
     
+    private func showRequestRollAlert() {
+            
+            let profileAlert = UIAlertController(title: "알림",
+                                                 message: "주사위를 굴리세요",
+                                                 preferredStyle: .alert)
+            
+            let confirmAction = UIAlertAction(title: "확인",
+                                              style: .cancel) { _ in
+            }
+            
+            profileAlert.addAction(confirmAction)
+            
+            self.present(profileAlert,
+                         animated: false)
+    }
 }
 
 // MARK: - configuration
@@ -212,5 +252,11 @@ extension ViewController {
     
     private func configureOpportunityView() {
         opportunityView.layer.cornerRadius = opportunityView.frame.width / 2
+    }
+    
+    private func configureDefualtLabelContent() {
+        opportunityLabel.text = "3"
+        turnCountLabel.text = "0 / 12"
+        
     }
 }
