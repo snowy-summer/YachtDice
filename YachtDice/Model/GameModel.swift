@@ -7,39 +7,21 @@
 
 import Foundation
 
+struct Player: Codable {
+    var displayName: String
+}
+
 struct GameModel: Codable {
     var players = [Player]()
     var playerType = PlayerType.blue
     
     var dices = [1,1,1,1,1]
     var lockedDices = [0,0,0,0,0]
-    
-    var opportunity: Int = 3
-    
-    var totalTurn: Int = 0
-    
-    var isGameOfEnd: Bool {
-        return totalTurn == 12 ? true : false
-    }
-    
     var scoreList: ScoreList = ScoreList()
     
-    var isRedTurn: Bool = true
-
-    var currentPlayer: PlayerType {
-      return isRedTurn ? .red : .blue
-    }
+    var opportunity: Int = 3
+    var totalTurn: Int = 0
     
-    var currentOpponent: PlayerType {
-      return isRedTurn ? .blue : .red
-    }
-    
-    var messageToDisplay: String {
-        let userName = isRedTurn ? "빨강" : "파랑"
-        
-            
-        return "\(userName) 턴!"
-    }
 }
 
 extension GameModel {
@@ -56,6 +38,4 @@ enum PlayerType: String, Codable {
     case red, blue
 }
 
-struct Player: Codable {
-    var displayName: String
-}
+

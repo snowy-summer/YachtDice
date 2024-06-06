@@ -30,6 +30,10 @@ final class YachtDiceViewController: UIViewController {
         didSet {
             updateUI()
             updateCalculatorDice()
+            
+            if gameModel.totalTurn == 12 {
+                showGameResultAlert()
+            }
         }
     }
     
@@ -141,7 +145,7 @@ extension YachtDiceViewController {
     }
     
     private func updateCalculatorDice() {
-        calculator.dices = gameModel.dices
+        calculator.dices = (gameModel.dices + gameModel.lockedDices).filter { $0 != 0 }
     }
     
     
@@ -186,6 +190,7 @@ extension YachtDiceViewController {
         if checkUserTurn() == false {
             updateDiceByData()
             updateRollByData()
+            // combine같은 걸로 세분화해서 업데이트 하는게 맞는 것 같다.
         }
         scoreTableView.reloadData()
         
@@ -359,8 +364,9 @@ extension YachtDiceViewController: UITableViewDelegate, UITableViewDataSource {
         updateScore(for: indexPath,
                     playerType: playerType)
         
-        changeTurn()
+       
         resetDice()
+        changeTurn()
         sendData()
     }
     
@@ -438,6 +444,30 @@ extension YachtDiceViewController {
                                             message: "당신의 턴이 아닙니다", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "확인",
                                           style: .cancel)
+        
+        noticeAlert.addAction(confirmAction)
+        
+        self.present(noticeAlert,
+                     animated: true)
+    }
+    
+    private func showGameResultAlert() {
+        
+        let winner: String
+        
+        if gameModel.scoreList.blueTotalScore > gameModel.scoreList.redTotalScore {
+            winner = "Blue 승리!"
+        } else if gameModel.scoreList.blueTotalScore < gameModel.scoreList.redTotalScore{
+            winner = "Red 승리!"
+        } else {
+            winner = "무승부"
+        }
+        let noticeAlert = UIAlertController(title: "알림",
+                                            message: winner, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인",
+                                          style: .cancel) {[weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
         
         noticeAlert.addAction(confirmAction)
         
