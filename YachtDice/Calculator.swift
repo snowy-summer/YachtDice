@@ -37,7 +37,7 @@ struct Calculator {
     }
     
     var fullHouse: Int {
-        var sortedDice = dices.sorted()
+        let sortedDice = dices.sorted()
     
         if (sortedDice[0] == sortedDice[1] &&
             sortedDice[2] == sortedDice[4]) ||

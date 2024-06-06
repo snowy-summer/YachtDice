@@ -13,8 +13,8 @@ final class ScoreTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    @IBOutlet weak var userScoreLabel: UILabel!
-    @IBOutlet weak var opponentScoreLabel: UILabel!
+    @IBOutlet weak var redScoreLabel: UILabel!
+    @IBOutlet weak var blueScoreLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,14 +22,17 @@ final class ScoreTableViewCell: UITableViewCell {
     }
     
     func updateContent(data: Score) {
-        scoreImageView.image = data.image
-        titleLabel.text = data.title
-        userScoreLabel.text = "\(data.userScore)"
-        opponentScoreLabel.text = "\(data.opponentScore)"
+        scoreImageView.image = UIImage(named: "\(data.dice.scoreImageString)")
+        titleLabel.text = data.dice.title
         
-        if data.title == "Subtotal" {
-            userScoreLabel.text = data.subtotalUserScore
-            opponentScoreLabel.text = data.subtotalopponentScore
+        redScoreLabel.text = "\(data.redScore)"
+        redScoreLabel.textColor = UIColor(resource: .redPlayer)
+        blueScoreLabel.text = "\(data.blueScore)"
+        blueScoreLabel.textColor = UIColor(resource: .bluePlayer)
+        
+        if data.dice == .bonus {
+            redScoreLabel.text = data.subtotalRedScore
+            blueScoreLabel.text = data.subtotalBlueScore
         }
         
         backgroundColor = .white

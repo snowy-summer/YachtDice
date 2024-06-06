@@ -41,17 +41,17 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXY-qK-e78">
-                        <rect key="frame" x="92" y="16" width="44.5" height="52"/>
+                        <rect key="frame" x="92" y="8" width="44.5" height="68"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="gXY-qK-e78" secondAttribute="bottom" constant="16" id="Cw9-fV-lKK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JdZ-lt-y1k" secondAttribute="bottom" id="Lw1-Fe-ZIc"/>
+                    <constraint firstItem="gXY-qK-e78" firstAttribute="bottom" secondItem="pVe-dN-z65" secondAttribute="bottom" id="MJq-Bc-rOE"/>
                     <constraint firstItem="gXY-qK-e78" firstAttribute="leading" secondItem="pVe-dN-z65" secondAttribute="trailing" constant="16" id="MmL-E5-uOU"/>
-                    <constraint firstItem="gXY-qK-e78" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="OdT-c0-jtT"/>
+                    <constraint firstItem="gXY-qK-e78" firstAttribute="top" secondItem="pVe-dN-z65" secondAttribute="top" id="SuI-Vz-9D2"/>
                     <constraint firstItem="pVe-dN-z65" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="XZe-0Q-gqH"/>
                     <constraint firstItem="JdZ-lt-y1k" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="Yu4-7b-G4p"/>
                     <constraint firstItem="pVe-dN-z65" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dO7-69-p4E"/>
@@ -62,10 +62,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="opponentScoreLabel" destination="Zp2-z0-YHa" id="0Bk-sc-er0"/>
+                <outlet property="blueScoreLabel" destination="Zp2-z0-YHa" id="0Bk-sc-er0"/>
+                <outlet property="redScoreLabel" destination="inU-yT-xwa" id="IY7-U1-FG1"/>
                 <outlet property="scoreImageView" destination="pVe-dN-z65" id="toh-dI-Vdr"/>
                 <outlet property="titleLabel" destination="gXY-qK-e78" id="knc-Ww-11w"/>
-                <outlet property="userScoreLabel" destination="inU-yT-xwa" id="IY7-U1-FG1"/>
             </connections>
             <point key="canvasLocation" x="131.70731707317074" y="18.8135593220339"/>
         </tableViewCell>
