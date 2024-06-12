@@ -13,6 +13,9 @@ struct Score: Codable {
     var redScore: Int = 0
     var blueScore: Int = 0
     
+    var isSelectedOfRed = false
+    var isSelectedOfBlue = false
+    
     var subtotalRedScore: String {
         "\(redScore) / 63"
     }

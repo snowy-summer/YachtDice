@@ -8,7 +8,15 @@
 import Foundation
 
 struct Calculator {
-    var dices = [Int](repeating: 1, count: 5)
+    
+    var unlockedDices = [Int]()
+    var lockedDices = [Int]()
+    
+    var dices: [Int] {
+        return (unlockedDices + lockedDices).filter { $0 != 0 }
+    }
+    
+    
     
     var sumOfDices: Int {
         return dices.reduce(0, +)

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OvU-wM-qJZ">
     <device id="retina6_7" orientation="landscape" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -290,7 +289,6 @@
                     <connections>
                         <outlet property="blueNameLabel" destination="dOb-eR-Zne" id="cuY-bb-FYO"/>
                         <outlet property="blueTotalScoreLabel" destination="oTD-zk-ouH" id="gZy-Jc-RvB"/>
-                        <outlet property="dicesImageStackView" destination="Hhk-d9-4ng" id="vjt-Jo-hsm"/>
                         <outlet property="lockedDiceImageStackView" destination="Z0z-6Y-Gp9" id="fZe-qc-FjA"/>
                         <outlet property="opportunityLabel" destination="oc1-cp-rcG" id="Wd7-Me-c3R"/>
                         <outlet property="opportunityView" destination="AMV-oB-DJV" id="Gpw-Y1-16o"/>
@@ -298,6 +296,7 @@
                         <outlet property="redTotalScoreLabel" destination="8Op-Fz-piq" id="Ald-6k-3xX"/>
                         <outlet property="scoreTableView" destination="JbB-Bw-Y3L" id="Qmb-iW-VCh"/>
                         <outlet property="turnCountLabel" destination="tjO-zn-q3d" id="rKw-1c-QSv"/>
+                        <outlet property="unlockedDiceImageStackView" destination="Hhk-d9-4ng" id="vjt-Jo-hsm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
