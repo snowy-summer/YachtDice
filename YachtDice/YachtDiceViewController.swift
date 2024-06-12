@@ -49,6 +49,7 @@ final class YachtDiceViewController: UIViewController {
         gameModel.$playerType
             .sink { [weak self] newValue in
                 guard let self = self else { return }
+                
                 resetDice(playerType: newValue)
             }
             .store(in: &cancellables)
@@ -58,7 +59,7 @@ final class YachtDiceViewController: UIViewController {
                 guard let self = self else { return }
 
                 opportunityLabel.text = "\(newValue)"
-                
+                if newValue == 3 { return }
                 if checkUserTurn() == false {
                     updateRollByData()
                 }
@@ -269,6 +270,7 @@ extension YachtDiceViewController {
     }
     
     private func updateUnlockedDiceImageByData(data: [Int]) {
+        if gameModel.opportunity == 3 { return }
         
         for i in 0..<5 {
             guard let diceImageView = unlockedDiceImageStackView.arrangedSubviews[i] as? UIImageView else { return }
@@ -283,6 +285,7 @@ extension YachtDiceViewController {
     }
     
     private func updateLockedDiceImageByData(data: [Int]) {
+        if gameModel.opportunity == 3 { return }
         
         for i in 0..<5 {
             guard let lockedImageView = lockedDiceImageStackView.arrangedSubviews[i] as? UIImageView else { return }
@@ -296,18 +299,22 @@ extension YachtDiceViewController {
         }
     }
     
+    private func mergeUnlockedAndLockedDices() {
+        for index in 0..<5 {
+            if gameModel.lockedDices[index] != 0 {
+                gameModel.dices[index] = gameModel.lockedDices[index]
+                gameModel.lockedDices[index] = 0
+            }
+        }
+    }
+    
     private func resetDice(playerType: PlayerType) {
         for index in 0..<5 {
             
             if let lockedImageView = lockedDiceImageStackView.arrangedSubviews[index] as? UIImageView  {
                 lockedImageView.image = nil
             }
-            
-            if gameModel.lockedDices[index] != 0 {
-                gameModel.dices[index] = gameModel.lockedDices[index]
-                gameModel.lockedDices[index] = 0
-            }
-            
+
             if let imageView = unlockedDiceImageStackView.arrangedSubviews[index] as? UIImageView  {
                 
                 let diceImages = redOrBlueDices(playerType: playerType)
@@ -369,10 +376,6 @@ extension YachtDiceViewController: GKMatchDelegate {
             return
         }
         
-        if gameModel.playerType != model.playerType {
-            gameModel.playerType = model.playerType
-        }
-        
         if gameModel.opportunity != model.opportunity {
             gameModel.opportunity = model.opportunity
         }
@@ -383,6 +386,10 @@ extension YachtDiceViewController: GKMatchDelegate {
         
         if gameModel.lockedDices != model.lockedDices {
             gameModel.lockedDices = model.lockedDices
+        }
+        
+        if gameModel.playerType != model.playerType {
+            gameModel.playerType = model.playerType
         }
         
         if gameModel.totalTurn != model.totalTurn {
@@ -431,9 +438,8 @@ extension YachtDiceViewController: UITableViewDelegate, UITableViewDataSource {
         updateScore(for: indexPath,
                     playerType: playerType)
         
-       
+        mergeUnlockedAndLockedDices()
         changeTurn()
-        resetDice(playerType: gameModel.playerType)
         sendData()
     }
     
