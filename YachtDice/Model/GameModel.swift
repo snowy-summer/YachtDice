@@ -7,15 +7,15 @@
 
 import Foundation
 import Combine
+import UIKit
 
 struct Player: Codable {
     var displayName: String
 }
 
-class GameModel: ObservableObject, Codable {
+final class GameModel: ObservableObject, Codable {
     var players = [Player]()
     @Published var playerType = PlayerType.blue
-
     @Published var dices = [1, 1, 1, 1, 1]
     @Published var lockedDices = [0, 0, 0, 0, 0]
     @Published var scoreList: ScoreList = ScoreList()
@@ -69,4 +69,29 @@ extension GameModel {
 
 enum PlayerType: String, Codable {
     case red, blue
+    
+    var diceImages: [UIImage] {
+        switch self {
+        case .red:
+            let redOneToSixDiceImages = [
+                UIImage(resource: .redOneDice),
+                UIImage(resource: .redTwoDice),
+                UIImage(resource: .redThreeDice),
+                UIImage(resource: .redFourDice),
+                UIImage(resource: .redFiveDice),
+                UIImage(resource: .redSixDice),
+            ]
+            return redOneToSixDiceImages
+        case .blue:
+            let blueOneToSixDiceImages = [
+                UIImage(resource: .blueOneDice),
+                UIImage(resource: .blueTwoDice),
+                UIImage(resource: .blueThreeDice),
+                UIImage(resource: .blueFourDice),
+                UIImage(resource: .blueFiveDice),
+                UIImage(resource: .blueSixDice),
+            ]
+            return blueOneToSixDiceImages
+        }
+    }
 }

@@ -16,8 +16,6 @@ struct Calculator {
         return (unlockedDices + lockedDices).filter { $0 != 0 }
     }
     
-    
-    
     var sumOfDices: Int {
         return dices.reduce(0, +)
     }

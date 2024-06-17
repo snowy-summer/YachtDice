@@ -16,9 +16,9 @@ final class GameCenterLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configurePlayButton()
         
-
         gameCenterHelper = GameCenterHelper()
         gameCenterHelper.delegate = self
         gameCenterHelper.authenticatePlayer()

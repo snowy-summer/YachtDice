@@ -50,7 +50,7 @@ final class YachtDiceViewController: UIViewController {
             .sink { [weak self] newValue in
                 guard let self = self else { return }
                 
-                resetDice(playerType: newValue)
+                resetDiceImage(playerType: newValue)
             }
             .store(in: &cancellables)
         
@@ -125,7 +125,7 @@ final class YachtDiceViewController: UIViewController {
         if let imageView = sender.view as? UIImageView,
            let  lockedImageView = lockedDiceImageStackView.arrangedSubviews[imageView.tag] as? UIImageView {
             
-            let images = redOrBlueDices(playerType: gameModel.playerType)
+            let images = gameModel.playerType.diceImages
             
             if gameModel.dices[imageView.tag] == 0 { return }
             
@@ -149,7 +149,7 @@ final class YachtDiceViewController: UIViewController {
         if let lockedImageView = sender.view as? UIImageView,
            let  diceImageView = unlockedDiceImageStackView.arrangedSubviews[lockedImageView.tag] as? UIImageView {
             
-            let diceImages = redOrBlueDices(playerType: gameModel.playerType)
+            let diceImages = gameModel.playerType.diceImages
             
             if gameModel.lockedDices[lockedImageView.tag] == 0 { return }
             
@@ -216,6 +216,15 @@ extension YachtDiceViewController {
         
     }
     
+    private func mergeUnlockedAndLockedDices() {
+        for index in 0..<5 {
+            if gameModel.lockedDices[index] != 0 {
+                gameModel.dices[index] = gameModel.lockedDices[index]
+                gameModel.lockedDices[index] = 0
+            }
+        }
+    }
+    
     private func sendData() {
         guard let match = match else { return }
         
@@ -239,7 +248,7 @@ extension YachtDiceViewController {
         for i in 0..<5 {
             if let randomDice = (1...6).randomElement(),
                let imageView = unlockedDiceImageStackView.arrangedSubviews[i] as? UIImageView  {
-                let diceImages = redOrBlueDices(playerType: gameModel.playerType)
+                let diceImages = gameModel.playerType.diceImages
                 let image = diceImages[randomDice - 1]
                 
                 if gameModel.dices[i] != 0 {
@@ -259,7 +268,7 @@ extension YachtDiceViewController {
             }
             
             if let imageView = unlockedDiceImageStackView.arrangedSubviews[i] as? UIImageView  {
-                let diceImages = redOrBlueDices(playerType: gameModel.playerType)
+                let diceImages = gameModel.playerType.diceImages
                 let image = diceImages[gameModel.dices[i] - 1]
                 
                 animatingImage(imageView: imageView)
@@ -274,7 +283,7 @@ extension YachtDiceViewController {
         
         for i in 0..<5 {
             guard let diceImageView = unlockedDiceImageStackView.arrangedSubviews[i] as? UIImageView else { return }
-            let images = redOrBlueDices(playerType: gameModel.playerType)
+            let images = gameModel.playerType.diceImages
             
             if data[i] != 0 {
                 diceImageView.image = images[ data[i] - 1 ]
@@ -289,7 +298,7 @@ extension YachtDiceViewController {
         
         for i in 0..<5 {
             guard let lockedImageView = lockedDiceImageStackView.arrangedSubviews[i] as? UIImageView else { return }
-            let images = redOrBlueDices(playerType: gameModel.playerType)
+            let images = gameModel.playerType.diceImages
             
             if data[i] != 0 {
                 lockedImageView.image = images[ data[i] - 1 ]
@@ -298,17 +307,9 @@ extension YachtDiceViewController {
             }
         }
     }
+  
     
-    private func mergeUnlockedAndLockedDices() {
-        for index in 0..<5 {
-            if gameModel.lockedDices[index] != 0 {
-                gameModel.dices[index] = gameModel.lockedDices[index]
-                gameModel.lockedDices[index] = 0
-            }
-        }
-    }
-    
-    private func resetDice(playerType: PlayerType) {
+    private func resetDiceImage(playerType: PlayerType) {
         for index in 0..<5 {
             
             if let lockedImageView = lockedDiceImageStackView.arrangedSubviews[index] as? UIImageView  {
@@ -317,7 +318,7 @@ extension YachtDiceViewController {
 
             if let imageView = unlockedDiceImageStackView.arrangedSubviews[index] as? UIImageView  {
                 
-                let diceImages = redOrBlueDices(playerType: playerType)
+                let diceImages = gameModel.playerType.diceImages
                 
                 let image = diceImages[gameModel.dices[index] - 1]
                 imageView.image = image
@@ -327,7 +328,7 @@ extension YachtDiceViewController {
     }
     
     private func animatingImage(imageView: UIImageView) {
-        var diceImages = redOrBlueDices(playerType: gameModel.playerType)
+        var diceImages = gameModel.playerType.diceImages
         
         diceImages.shuffle()
         imageView.animationImages = diceImages
@@ -336,33 +337,6 @@ extension YachtDiceViewController {
         imageView.startAnimating()
         
     }
-    
-    private func redOrBlueDices(playerType: PlayerType) -> [UIImage] {
-        switch playerType {
-        case.blue:
-            let blueOneToSixDiceImages = [
-                UIImage(resource: .blueOneDice),
-                UIImage(resource: .blueTwoDice),
-                UIImage(resource: .blueThreeDice),
-                UIImage(resource: .blueFourDice),
-                UIImage(resource: .blueFiveDice),
-                UIImage(resource: .blueSixDice),
-            ]
-            return blueOneToSixDiceImages
-            
-        case.red:
-            let redOneToSixDiceImages = [
-                UIImage(resource: .redOneDice),
-                UIImage(resource: .redTwoDice),
-                UIImage(resource: .redThreeDice),
-                UIImage(resource: .redFourDice),
-                UIImage(resource: .redFiveDice),
-                UIImage(resource: .redSixDice),
-            ]
-            return redOneToSixDiceImages
-        }
-    }
-    
 }
 
 //MARK: - GKMatchDelegate
